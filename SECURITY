@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SECURITY NOTIFICATION - ARIAN</title>
+  <style>
+    :root {
+      --hacker-green: #00ff00;
+      --hacker-pink: #ff00ff;
+      --hacker-blue: #00ffff;
+      --hacker-red: #ff0000;
+      --background: #000;
+      --font-main: 'VT323', monospace;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: var(--font-main);
+      background: var(--background);
+      color: var(--hacker-green);
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      line-height: 1.6;
+    }
+    
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    
+    .scan-lines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 255, 0, 0.1) 1px,
+        transparent 2px
+      );
+      animation: scan 2s linear infinite;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    @keyframes scan {
+      0% { background-position: 0 -100%; }
+      100% { background-position: 0 100%; }
+    }
+    
+    .container {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    h1 {
+      font-size: clamp(2rem, 8vw, 4rem);
+      text-shadow: 0 0 15px var(--hacker-green), 0 0 30px var(--hacker-red);
+      animation: glitch 3s infinite;
+      margin-bottom: 1.5rem;
+    }
+    
+    @keyframes glitch {
+      0%, 100% { 
+        transform: translate(0);
+        text-shadow: 0 0 10px var(--hacker-green);
+      }
+      5%, 15%, 25% { 
+        transform: translate(-2px, 2px);
+        text-shadow: 2px 2px var(--hacker-red), -2px -2px var(--hacker-blue);
+      }
+      10%, 20%, 30% { 
+        transform: translate(2px, -2px);
+        text-shadow: -2px 2px var(--hacker-pink), 2px -2px var(--hacker-blue);
+      }
+    }
+    
+    p {
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      margin: 1rem 0;
+      animation: fade-in 2s ease-in-out;
+      max-width: 800px;
+    }
+    
+    @keyframes fade-in {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    
+    .contact {
+      margin-top: 2.5rem;
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      color: var(--hacker-pink);
+      text-shadow: 0 0 10px var(--hacker-pink);
+      animation: pulse 3s infinite;
+    }
+    
+    .contact a {
+      color: var(--hacker-pink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--hacker-pink);
+      transition: text-shadow 0.3s ease;
+    }
+    
+    .contact a:hover, 
+    .contact a:focus {
+      text-shadow: 0 0 15px var(--hacker-pink), 0 0 25px var(--hacker-pink);
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.02); opacity: 0.9; }
+    }
+    
+    .console-output {
+      margin-top: 2rem;
+      padding: 1rem;
+      border: 1px solid var(--hacker-green);
+      background: rgba(0, 30, 0, 0.3);
+      max-width: 800px;
+      width: 90%;
+      height: 200px;
+      overflow-y: auto;
+      text-align: left;
+      font-size: 1.1rem;
+    }
+    
+    .console-line {
+      margin: 0.5rem 0;
+      opacity: 0;
+      animation: console-fade 0.5s forwards;
+    }
+    
+    @keyframes console-fade {
+      to { opacity: 1; }
+    }
+    
+    @media (max-width: 768px) {
+      .container { padding: 1rem; }
+      .console-output { height: 150px; font-size: 1rem; }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+      .scan-lines { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+  <div class="scan-lines" aria-hidden="true"></div>
+  
+  <div class="container">
+    <h1 aria-label="Website hacked by Arian">WEBSITE HACKED BY ARIAN</h1>
+    <p>Your system has been compromised.</p>
+    <p>All security measures have been bypassed.</p>
+    
+    <div class="console-output" id="console" role="log" aria-live="polite">
+
+    </div>
+    
+    <div class="contact" role="contentinfo">
+      Contact for recovery: <a href="mailto:coded.by.arian@gmail.com" aria-label="Email coded dot by dot arian at gmail dot com">coded.by.arian@gmail.com</a>
+    </div>
+  </div>
+
+  <script>
+    // Matrix Rain Animation with optimized performance
+    (function() {
+      const canvas = document.getElementById('matrix-canvas');
+      const ctx = canvas.getContext('2d');
+      let animationId;
+      let lastTime = 0;
+      const fps = 15; // Reduced from 20 to 15 FPS
+      const fpsInterval = 1000 / fps;
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+      
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
+      const fontSize = 16;
+      let columns = Math.floor(canvas.width / fontSize);
+      let drops = Array(columns).fill(1);
+      
+      function drawMatrix(timestamp) {
+        if (!lastTime) lastTime = timestamp;
+        const deltaTime = timestamp - lastTime;
+        
+        if (deltaTime > fpsInterval) {
+          lastTime = timestamp - (deltaTime % fpsInterval);
+          
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = '#00ff00';
+          ctx.font = `${fontSize}px monospace`;
+          
+          for (let i = 0; i < drops.length; i++) {
+            const text = chars[Math.floor(Math.random() * chars.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            drops[i] = drops[i] > canvas.height / fontSize || Math.random() > 0.975 ? 0 : drops[i] + 1;
+          }
+        }
+        
+        animationId = requestAnimationFrame(drawMatrix);
+      }
+      
+      // Start animation
+      animationId = requestAnimationFrame(drawMatrix);
+      
+      // Cleanup on page hide
+      window.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          cancelAnimationFrame(animationId);
+        } else {
+          animationId = requestAnimationFrame(drawMatrix);
+        }
+      });
+    })();
+    
+    // Console-style messages instead of annoying alerts
+    (function() {
+      const consoleElement = document.getElementById('console');
+      const messages = [
+        "> Initiating breach protocol...",
+        "> Firewall bypassed successfully.",
+        "> Intrusion detection systems disabled.",
+        "> Admin panel hijacked.",
+        "> Database access granted.",
+        "> User credentials compromised.",
+        "> Encrypting sensitive files...",
+        "> Ransomware deployed.",
+        "> Backdoor installed for persistent access.",
+        "> Network traffic rerouted.",
+        "> Root privileges obtained.",
+        "> System logs erased.",
+        "> Malware injection complete.",
+        "> All defenses neutralized. System under control."
+      ];
+      
+      let messageIndex = 0;
+      
+      function addConsoleMessage() {
+        if (messageIndex < messages.length) {
+          const messageElement = document.createElement('div');
+          messageElement.className = 'console-line';
+          messageElement.textContent = messages[messageIndex];
+          messageElement.style.animationDelay = (messageIndex * 200) + 'ms';
+          consoleElement.appendChild(messageElement);
+          consoleElement.scrollTop = consoleElement.scrollHeight;
+          
+          messageIndex++;
+          setTimeout(addConsoleMessage, 500);
+        }
+      }
+      
+      // Start after a short delay
+      setTimeout(addConsoleMessage, 1000);
+    })();
+  </script>
+</body>
+</html>
