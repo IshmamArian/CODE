@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WEBSITE HACKED BY ARIAN</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background: #111;
+      color: #0f0;
+      font-family: monospace;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #f00;
+      text-shadow: 0 0 10px #f00;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #333;
+      margin: 20px 0;
+    }
+    .contact {
+      margin-top: 30px;
+      color: #0ff;
+    }
+    .calm {
+      color: #aaa;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>WEBSITE HACKED BY ARIAN</h1>
+  <hr>
+  <p class="calm">BREACH DETECTED - LIVE DISPLAY</p>
+  <p class="calm">This site has been compromised and replaced with this notice.</p>
+
+  <div class="contact">
+    <p>Email: <b>coded.by.arian@gmail.com</b></p>
+    <p>Phone: <b>+880 1944 383525</b></p>
+  </div>
+  <hr>
+  <p class="calm">[ End of Transmission ]</p>
+</body>
+</html>
