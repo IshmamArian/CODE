@@ -2,14 +2,14 @@
 
 Welcome to my GitHub repository.
 
-This space is dedicated to my personal experiments, learning projects, and creative explorations in **front-end web development**. The code here reflects my ongoing journey of understanding how modern and classic web technologies work together, from clean static pages to interactive UI concepts.
+This space is dedicated to my personal experiments, learning projects and creative explorations in **front end web development**. The code here reflects my ongoing journey of understanding how modern and classic web technologies work together, from clean static pages to interactive UI concepts.
 
 ---
 
 ## 👑 About This Repository
 
 This repository contains:
-- Custom HTML, CSS, and JavaScript projects  
+- Custom HTML, CSS and JavaScript projects  
 - UI/UX experiments and animated layouts  
 - Blogger compatible themes and custom styles  
 - Retro inspired and minimal web designs  
@@ -26,7 +26,7 @@ All projects are built with a focus on:
 ## 🛠 Technologies Used
 
 - **HTML5** — semantic structure and layout  
-- **CSS3** — animations, effects, and responsive design  
+- **CSS3** — animations, effects and responsive design  
 - **JavaScript** — interactivity and logic  
 - **Blogger Custom Themes** — platform specific adaptations  
 
@@ -64,7 +64,7 @@ Any “cyber” or “hacker style” visuals are purely **aesthetic and fiction
 
 This repository is actively maintained and updated as I continue learning and experimenting.
 
-Feedback and suggestions are welcome, but this is primarily a **personal development archive**.
+Feedback and suggestions are welcome but this is primarily a **personal development archive**.
 
 ---
 
@@ -75,4 +75,4 @@ Web development learner & enthusiast
 
 ---
 
-*Built with curiosity, experimentation, and respect for the old and modern web.*
+*Built with curiosity, experimentation and respect for the old and modern web.*
