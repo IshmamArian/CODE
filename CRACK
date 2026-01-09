@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HACKED BY ARIAN</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: #0f0;
+      font-family: "Lucida Console", monospace;
+      overflow: hidden;
+    }
+
+    .glitch {
+      font-size: 3.2em;
+      font-weight: bold;
+      color: red;
+      text-align: center;
+      margin-top: 40px;
+      position: relative;
+      animation: subtleGlitch 2s infinite;
+    }
+
+    @keyframes subtleGlitch {
+      0% { text-shadow: 2px 0 red, -2px 0 black; }
+      20% { text-shadow: -2px -1px red, 2px 1px black; }
+      40% { text-shadow: 2px 1px black, -2px -1px red; }
+      60% { text-shadow: -1px 0 red, 1px 0 black; }
+      80% { text-shadow: 1px 1px red, -1px -1px black; }
+      100% { text-shadow: 0 0 15px red; }
+    }
+
+    #typing {
+      font-size: 1.1em;
+      margin: 20px;
+      color: #0f0;
+      border-right: 3px solid #0f0;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.7s infinite;
+      text-align: center;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 30ch; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    #terminal {
+      margin: 20px auto;
+      width: 90%;
+      height: 60vh;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      color: #0f0;
+      font-size: 14px;
+      border: 2px solid red;
+      overflow: hidden;
+      box-shadow: 0 0 15px red;
+    }
+
+    .line {
+      margin: 0;
+      padding: 0;
+      animation: fadeIn 0.2s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .flash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 0, 0, 0.2);
+      mix-blend-mode: difference;
+      pointer-events: none;
+      opacity: 0;
+      animation: flashAnim 0.3s ease-in-out;
+    }
+
+    @keyframes flashAnim {
+      0% { opacity: 0.8; }
+      100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glitch">WEBSITE HACKED BY ARIAN</div>
+  <div id="typing">Initializing breach protocol...</div>
+  <div id="terminal"></div>
+  <div id="flash" class="flash"></div>
+
+  <script>
+    const terminal = document.getElementById("terminal");
+    const flash = document.getElementById("flash");
+    const typing = document.getElementById("typing");
+
+    const alerts = [
+      "[ALERT] Root access granted...",
+      "[ERROR] Firewall bypassed successfully...",
+      "[WARNING] Admin credentials extracted...",
+      "[INFO] Database dump initiated...",
+      "[TRACE] Security logs deleted...",
+      "[ALERT] SSL Certificate cracked...",
+      "[SYS] Backdoor installation complete...",
+      "[ERROR] IDS/IPS systems disabled...",
+      "[BREACH] Server memory leaked...",
+      "[LOG] VPN tunneling engaged...",
+      "[OVERRIDE] Kernel exploit executed...",
+      "[UPLOAD] Malicious payload deployed...",
+      "[CRITICAL] Remote shell opened...",
+      "[TRACE] Encryption keys stolen...",
+      "[ALERT] Anti-virus evasion successful...",
+      "[SUCCESS] Full system compromise...",
+      "[INFO] Connection rerouted via TOR...",
+      "[BREACH] Web server defaced...",
+      "[TRACE] Tracking disabled...",
+      "[ALERT] Session hijacking successful...",
+      "[ERROR] DNS spoofing attack complete...",
+      "[INFO] File system exfiltration running...",
+      "[OVERRIDE] BIOS settings modified...",
+      "[CRITICAL] Physical security bypassed...",
+      "[BREACH] Privilege escalation confirmed...",
+      "[WARNING] Malware injection in progress...",
+      "[ALERT] Zero-day exploit triggered...",
+      "[SYS] Critical process terminated...",
+      "[TRACE] SSH brute force successful...",
+      "[INFO] Ransomware deployment initiated...",
+      "[BREACH] Master Boot Record corrupted...",
+      "[ALERT] Cloud security compromised...",
+      "[ERROR] Virtual machine escaped...",
+      "[WARNING] API tokens harvested...",
+      "[CRITICAL] Kernel panic induced...",
+      "[OVERRIDE] Secure boot bypassed...",
+      "[LOG] Blockchain wallet drained...",
+      "[ALERT] DNS redirection injected...",
+      "[ERROR] Rootkit persistence enabled..."
+    ];
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function addAlert() {
+      const shuffled = shuffleArray([...alerts]);
+      const alert = shuffled[Math.floor(Math.random() * shuffled.length)];
+
+      const line = document.createElement("div");
+      line.classList.add("line");
+      line.textContent = alert;
+      terminal.appendChild(line);
+
+      if (terminal.children.length > 25) {
+        terminal.removeChild(terminal.firstChild);
+      }
+
+      if (alert.includes("CRITICAL") || alert.includes("BREACH") || alert.includes("ALERT")) {
+        flash.classList.remove("flash");
+        void flash.offsetWidth; // Restart animation trick
+        flash.classList.add("flash");
+      }
+    }
+
+    // Wait until typing finishes, then start alerts
+    setTimeout(() => {
+      typing.style.display = "none";
+      setInterval(addAlert, 500);
+    }, 5000);
+  </script>
+</body>
+</html>
