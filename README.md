@@ -1,4 +1,4 @@
-# Arian — Front End & Web Development Experiments
+# CODE — Front End & Web Development Experiments
 
 Welcome to my GitHub repository.
 
@@ -6,7 +6,7 @@ This space is dedicated to my personal experiments, learning projects, and creat
 
 ---
 
-## 🧠 About This Repository
+## 👑 About This Repository
 
 This repository contains:
 - Custom HTML, CSS, and JavaScript projects  
@@ -48,7 +48,7 @@ You can:
 
 ---
 
-## ⚠ Disclaimer
+## ⚠️ Disclaimer
 
 This repository is for **educational and creative purposes only**.
 
@@ -56,7 +56,7 @@ This repository is for **educational and creative purposes only**.
 - No data stealing scripts  
 - No hidden tracking mechanisms  
 
-Any “cyber” or “hacker-style” visuals are purely **aesthetic and fictional**, inspired by classic internet culture and design themes.
+Any “cyber” or “hacker style” visuals are purely **aesthetic and fictional**, inspired by classic internet culture and design themes.
 
 ---
 
