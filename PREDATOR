@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Breach Detected</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lucida Console', Monaco, monospace;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #0f0;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #00ff00;
+            margin-bottom: 30px;
+        }
+        
+        .hacker-text {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 20px 0;
+            text-shadow: 0 0 10px #0f0;
+            color: #00ff00;
+            animation: glitch 5s infinite;
+        }
+        
+        .breach-alert {
+            font-size: 2.2rem;
+            color: #ff0000;
+            text-shadow: 0 0 10px #f00;
+            animation: blink 1s infinite;
+            margin: 30px 0;
+            letter-spacing: 2px;
+        }
+        
+        .alert-container {
+            background: rgba(0, 20, 0, 0.3);
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            padding: 20px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+        
+        .alert-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #00ff00;
+            text-decoration: underline;
+        }
+        
+        .alerts {
+            list-style: none;
+        }
+        
+        .alert {
+            color: #ff0000;
+            font-size: 1.2rem;
+            margin: 10px 0;
+            padding: 8px 15px;
+            background: rgba(255, 0, 0, 0.1);
+            border-left: 3px solid #ff0000;
+            animation: alert-appear 0.5s ease-out;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation-fill-mode: forwards;
+        }
+        
+        .scanline {
+            position: absolute;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(to bottom, 
+                rgba(0, 255, 0, 0.2), 
+                rgba(0, 255, 0, 0.1), 
+                rgba(0, 255, 0, 0.2));
+            box-shadow: 0 0 15px #0f0;
+            z-index: 10;
+            animation: scan 4s linear infinite;
+            pointer-events: none;
+        }
+        
+        .terminal-flicker {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 5;
+            pointer-events: none;
+            animation: terminal-flicker 8s infinite;
+        }
+        
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        
+        .access-denied {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 1rem;
+            color: #ff0000;
+            text-shadow: 0 0 5px #f00;
+        }
+        
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0.3; }
+        }
+        
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px 0 #f00, -2px -2px 0 #00f; }
+            5% { text-shadow: -2px -2px 0 #f00, 2px 2px 0 #00f; }
+            10%, 100% { text-shadow: 2px 2px 0 #f00, -2px -2px 0 #00f; }
+        }
+        
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100vh; }
+        }
+        
+        @keyframes terminal-flicker {
+            0%, 5%, 10%, 15%, 20%, 25%, 30%, 35%, 40%, 45%, 50%, 55%, 60%, 65%, 70%, 75%, 80%, 85%, 90%, 95%, 100% {
+                opacity: 0;
+            }
+            2%, 7%, 12%, 17%, 22%, 27%, 32%, 37%, 42%, 47%, 52%, 57%, 62%, 67%, 72%, 77%, 82%, 87%, 92%, 97% {
+                opacity: 0.1;
+            }
+        }
+        
+        @keyframes alert-appear {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hacker-text {
+                font-size: 2.5rem;
+            }
+            
+            .breach-alert {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrixBg"></div>
+    <div class="scanline"></div>
+    <div class="terminal-flicker"></div>
+    
+    <div class="header">
+        <h1 class="hacker-text">WEBSITE HACKED BY ARIAN</h1>
+        <div class="breach-alert">SECURITY BREACH DETECTED</div>
+    </div>
+    
+    <div class="alert-container">
+        <div class="alert-title">SYSTEM ALERTS - CRITICAL SEVERITY</div>
+        <ul class="alerts" id="alertList">
+        </ul>
+    </div>
+    
+    <div class="access-denied">ACCESS DENIED: ROOT PRIVILEGES REQUIRED</div>
+
+    <script>
+        // Create matrix background effect
+        function createMatrixBg() {
+            const matrixBg = document.getElementById('matrixBg');
+            const characters = '01010101010101010101010101010101ARIAN$#%&@!';
+            const columns = Math.floor(window.innerWidth / 20);
+            
+            for (let i = 0; i < columns; i++) {
+                const column = document.createElement('div');
+                column.style.position = 'absolute';
+                column.style.top = '0';
+                column.style.left = (i * 20) + 'px';
+                column.style.width = '20px';
+                column.style.color = '#00ff00';
+                column.style.fontSize = '16px';
+                column.style.wordBreak = 'break-all';
+                column.style.textAlign = 'center';
+                column.style.animation = `matrix-flow ${Math.random() * 5 + 3}s linear infinite`;
+                column.style.animationDelay = Math.random() * 5 + 's';
+                
+                let content = '';
+                for (let j = 0; j < 50; j++) {
+                    content += characters.charAt(Math.floor(Math.random() * characters.length)) + '<br>';
+                }
+                
+                column.innerHTML = content;
+                matrixBg.appendChild(column);
+            }
+            
+            // Add the matrix-flow animation
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes matrix-flow {
+                    0% { transform: translateY(-100%); }
+                    100% { transform: translateY(100vh); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Array of error messages
+        const errorMessages = [
+            "FIREWALL BYPASSED",
+            "DATABASE COMPROMISED",
+            "ENCRYPTION KEYS STOLEN",
+            "ROOT ACCESS OBTAINED",
+            "ADMIN PRIVILEGES ESCALATED",
+            "SYSTEM BACKDOOR INSTALLED",
+            "NETWORK SECURITY BREACHED",
+            "USER CREDENTIALS HARVESTED",
+            "SECURITY PROTOCOLS DISABLED",
+            "INTRUSION DETECTION FAILED",
+            "MALWARE INJECTION SUCCESSFUL",
+            "DATA EXFILTRATION IN PROGRESS",
+            "SECURE BOOT COMPROMISED",
+            "BIOS FIRMWARE ALTERED",
+            "SYSTEM LOGS CLEARED",
+            "SECURITY CAMERAS DISABLED",
+            "AUTHENTICATION SERVER PENETRATED",
+            "NETWORK TRAFFIC INTERCEPTED",
+            "CRYPTOGRAPHY ALGORITHMS CRACKED",
+            "SURVEILLANCE SYSTEMS HIJACKED",
+            "ACCESS CONTROL LISTS MODIFIED",
+            "SECURITY CERTIFICATES REVOKED",
+            "DNS RECORDS POISONED",
+            "PROXY SERVERS COMPROMISED",
+            "SECURE SHELL TUNNEL CREATED",
+            "FIREWALL RULES DELETED",
+            "SECURITY TOKEN DUPLICATED",
+            "TWO-FACTOR AUTHENTICATION BYPASSED",
+            "PASSWORD HASHES CRACKED",
+            "SECURE CONNECTION INTERCEPTED",
+            "NETWORK SEGMENTATION FAILED",
+            "SECURE ELEMENT BREACHED",
+            "TRUSTED PLATFORM MODULE COMPROMISED",
+            "VIRTUALIZATION SECURITY BYPASSED",
+            "CONTAINER ESCAPE DETECTED"
+        ];
+        
+        // Function to display alerts one by one
+        function displayAlerts() {
+            const alertList = document.getElementById('alertList');
+            let i = 0;
+            
+            function addAlert() {
+                if (i < errorMessages.length) {
+                    const li = document.createElement('li');
+                    li.className = 'alert';
+                    li.textContent = `[!] ${errorMessages[i]}`;
+                    alertList.appendChild(li);
+                    
+                    // Scroll to bottom
+                    alertList.parentElement.scrollTop = alertList.parentElement.scrollHeight;
+                    
+                    i++;
+                    setTimeout(addAlert, 800);
+                } else {
+                    // Restart from the beginning
+                    setTimeout(() => {
+                        alertList.innerHTML = '';
+                        i = 0;
+                        addAlert();
+                    }, 3000);
+                }
+            }
+            
+            addAlert();
+        }
+        
+        // Initialize the page
+        window.onload = function() {
+            createMatrixBg();
+            displayAlerts();
+        };
+    </script>
+</body>
+</html>
