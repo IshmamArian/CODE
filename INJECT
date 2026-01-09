@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HACKED BY ARIAN</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: red;
+      font-family: "Lucida Console", monospace;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .glitch {
+      font-size: 3em;
+      font-weight: bold;
+      position: relative;
+      display: inline-block;
+      margin-top: 100px;
+      animation: flicker 1.2s infinite alternate;
+      color: red;
+      text-shadow: 0 0 10px red, 0 0 20px red, 0 0 40px red;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      right: 0;
+      color: red;
+      background: black;
+      overflow: hidden;
+      clip: rect(0, 900px, 0, 0);
+    }
+
+    .glitch::before {
+      animation: glitchTop 2s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      animation: glitchBottom 3s infinite linear alternate;
+    }
+
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      10% { clip: rect(0, 9999px, 20px, 0); transform: translate(-4px, -2px);}
+      30% { clip: rect(0, 9999px, 10px, 0); transform: translate(4px, 2px);}
+      60% { clip: rect(0, 9999px, 15px, 0); transform: translate(-3px, 1px);}
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      20% { clip: rect(40px, 9999px, 60px, 0); transform: translate(3px, 2px);}
+      40% { clip: rect(25px, 9999px, 45px, 0); transform: translate(-3px, -2px);}
+      70% { clip: rect(50px, 9999px, 70px, 0); transform: translate(2px, -1px);}
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+
+    #terminal {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      padding: 15px;
+      text-align: left;
+      font-size: 14px;
+      color: #0f0;
+      overflow: hidden;
+      white-space: pre-wrap;
+      opacity: 0.85;
+    }
+
+    .warning {
+      color: yellow;
+      font-size: 1.2em;
+      margin-top: 20px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glitch" data-text="WEBSITE HACKED BY ARIAN">WEBSITE HACKED BY ARIAN</div>
+  <div class="warning">⚠ SECURITY BREACH DETECTED ⚠</div>
+  <div id="terminal"></div>
+
+  <script>
+    const terminal = document.getElementById("terminal");
+    const alerts = [
+      "[ERROR] Firewall bypassed...",
+      "[WARNING] Database compromised...",
+      "[INFO] Dumping user credentials...",
+      "[ALERT] Root access acquired...",
+      "[LOG] Connection rerouted through proxy nodes...",
+      "[SYS] Injecting backdoor...",
+      "[TRACE] Security system disabled...",
+      "[OVERRIDE] Admin panel hijacked...",
+      "[UPLOAD] Malicious payload delivered...",
+      "[COMPLETE] Website defacement successful!",
+      "[MONITOR] Listening for further commands...",
+      "[BREACH] SSL certificate cracked...",
+      "[LEAK] Sensitive files exfiltrated...",
+      "[ERROR] Anti-virus evasion successful...",
+      "[BACKDOOR] Persistence module installed...",
+      "[ALERT] Zero-day exploit triggered...",
+      "[TRACE] IDS/IPS system bypassed...",
+      "[WARNING] Logging service wiped...",
+      "[SYSTEM] Kernel-level access granted...",
+      "[SUCCESS] Full server takeover completed!"
+    ];
+
+    function randomAlert() {
+      return alerts[Math.floor(Math.random() * alerts.length)];
+    }
+
+    function addAlert() {
+      terminal.textContent += "\n" + randomAlert();
+      if (terminal.textContent.split("\n").length > 22) {
+        terminal.textContent = terminal.textContent.split("\n").slice(-22).join("\n");
+      }
+    }
+
+    setInterval(addAlert, 650);
+  </script>
+</body>
+</html>
