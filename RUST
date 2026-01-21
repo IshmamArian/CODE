@@ -1,0 +1,49 @@
+use std::fmt;
+use std::time::{SystemTime, UNIX_EPOCH};
+
+struct UserProfile {
+    name: String,
+    mindset: String,
+    theme: String,
+    active_time: String,
+}
+
+impl fmt::Display for UserProfile {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        writeln!(f, "USER        : {}", self.name)?;
+        writeln!(f, "MINDSET     : {}", self.mindset)?;
+        writeln!(f, "THEME       : {}", self.theme)?;
+        writeln!(f, "ACTIVE TIME : {}", self.active_time)
+    }
+}
+
+struct SystemCore;
+
+impl SystemCore {
+    fn environment() -> String {
+        let now = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .unwrap()
+            .as_secs();
+
+        format!(
+            "ENVIRONMENT\nTIME        : {}\nLANGUAGE    : Rust",
+            now
+        )
+    }
+}
+
+fn main() {
+    let user = UserProfile {
+        name: String::from("Arian"),
+        mindset: String::from("Serious • Overthinker • Observer"),
+        theme: String::from("Dark / Black"),
+        active_time: String::from("Night"),
+    };
+
+    println!("{}", user);
+    println!("{}", SystemCore::environment());
+    println!();
+    println!("STATUS      : ONLINE");
+    println!("MODE        : SILENT");
+}
