@@ -1,0 +1,52 @@
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+class UserProfile {
+    private final String name;
+    private final String mindset;
+    private final String theme;
+    private final String activeTime;
+
+    UserProfile(String name, String mindset, String theme, String activeTime) {
+        this.name = Objects.requireNonNull(name);
+        this.mindset = Objects.requireNonNull(mindset);
+        this.theme = Objects.requireNonNull(theme);
+        this.activeTime = Objects.requireNonNull(activeTime);
+    }
+
+    String summary() {
+        return String.format(
+                "USER        : %s%nMINDSET     : %s%nTHEME       : %s%nACTIVE TIME : %s",
+                name, mindset, theme, activeTime
+        );
+    }
+}
+
+final class SystemCore {
+    static String environment() {
+        return String.format(
+                "OS          : %s%nJAVA VER    : %s%nTIME        : %s",
+                System.getProperty("os.name"),
+                System.getProperty("java.version"),
+                LocalDateTime.now()
+        );
+    }
+}
+
+public final class BlackCoreSystem {
+    public static void main(String[] args) {
+        UserProfile user = new UserProfile(
+                "Arian",
+                "Serious • Overthinker • Observer",
+                "Dark / Black",
+                "Night"
+        );
+
+        System.out.println(user.summary());
+        System.out.println();
+        System.out.println(SystemCore.environment());
+        System.out.println();
+        System.out.println("STATUS      : ONLINE");
+        System.out.println("MODE        : SILENT");
+    }
+}
