@@ -1,0 +1,48 @@
+module Main (main) where
+
+import Data.Time.Clock
+import Data.Time.Format
+import System.Locale ()
+
+data UserProfile = UserProfile
+  { name       :: String
+  , mindset    :: String
+  , theme      :: String
+  , activeTime :: String
+  }
+
+renderProfile :: UserProfile -> String
+renderProfile u =
+  unlines
+    [ "USER        : " ++ name u
+    , "MINDSET     : " ++ mindset u
+    , "THEME       : " ++ theme u
+    , "ACTIVE TIME : " ++ activeTime u
+    ]
+
+environment :: IO String
+environment = do
+  time <- getCurrentTime
+  let formatted = formatTime defaultTimeLocale "%Y-%m-%d %H:%M:%S" time
+  pure $
+    unlines
+      [ "ENVIRONMENT"
+      , "TIME        : " ++ formatted
+      , "LANGUAGE    : Haskell"
+      ]
+
+main :: IO ()
+main = do
+  let user =
+        UserProfile
+          { name = "Arian"
+          , mindset = "Serious • Overthinker • Observer"
+          , theme = "Dark / Black"
+          , activeTime = "Night"
+          }
+
+  putStrLn (renderProfile user)
+  env <- environment
+  putStrLn env
+  putStrLn "STATUS      : ONLINE"
+  putStrLn "MODE        : SILENT"
