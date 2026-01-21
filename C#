@@ -1,0 +1,57 @@
+using System;
+
+namespace BlackCore
+{
+    class UserProfile
+    {
+        public string Name { get; }
+        public string Mindset { get; }
+        public string Theme { get; }
+        public string ActiveTime { get; }
+
+        public UserProfile(string name, string mindset, string theme, string activeTime)
+        {
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Mindset = mindset ?? throw new ArgumentNullException(nameof(mindset));
+            Theme = theme ?? throw new ArgumentNullException(nameof(theme));
+            ActiveTime = activeTime ?? throw new ArgumentNullException(nameof(activeTime));
+        }
+
+        public void Display()
+        {
+            Console.WriteLine($"USER        : {Name}");
+            Console.WriteLine($"MINDSET     : {Mindset}");
+            Console.WriteLine($"THEME       : {Theme}");
+            Console.WriteLine($"ACTIVE TIME : {ActiveTime}\n");
+        }
+    }
+
+    class SystemCore
+    {
+        public static void Environment()
+        {
+            Console.WriteLine("ENVIRONMENT");
+            Console.WriteLine($"TIME        : {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+            Console.WriteLine("LANGUAGE    : C#\n");
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            var user = new UserProfile(
+                "Arian",
+                "Serious • Overthinker • Observer",
+                "Dark / Black",
+                "Night"
+            );
+
+            user.Display();
+            SystemCore.Environment();
+
+            Console.WriteLine("STATUS      : ONLINE");
+            Console.WriteLine("MODE        : SILENT");
+        }
+    }
+}
