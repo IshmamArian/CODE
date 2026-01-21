@@ -1,0 +1,59 @@
+import time
+import platform
+from datetime import datetime
+
+
+class UserProfile:
+    def __init__(self, name, mindset, theme, active_time):
+        self.name = name
+        self.mindset = mindset
+        self.theme = theme
+        self.active_time = active_time
+
+    def display_profile(self):
+        print(f"USER        : {self.name}")
+        print(f"MINDSET     : {self.mindset}")
+        print(f"THEME       : {self.theme}")
+        print(f"ACTIVE TIME : {self.active_time}")
+
+
+class SystemCore:
+    @staticmethod
+    def boot():
+        print("Initializing BLACKCORE...")
+        time.sleep(1)
+        print("Loading modules...")
+        time.sleep(1)
+        print("System integrity: STABLE\n")
+
+    @staticmethod
+    def system_info():
+        print("SYSTEM INFO")
+        print("-" * 20)
+        print("OS          :", platform.system())
+        print("Architecture:", platform.machine())
+        print("Python Ver  :", platform.python_version())
+        print("Time        :", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        print()
+
+
+def main():
+    user = UserProfile(
+        name="Arian",
+        mindset="Serious • Overthinker • Observer",
+        theme="Dark / Black",
+        active_time="Night Owl"
+    )
+
+    SystemCore.boot()
+    user.display_profile()
+    print()
+    SystemCore.system_info()
+
+    print("STATUS      : ONLINE")
+    print("MODE        : SILENT EXECUTION")
+    print("\nSession closed. Darkness preserved. 🖤")
+
+
+if __name__ == "__main__":
+    main()
