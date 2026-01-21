@@ -1,0 +1,52 @@
+class Arian
+  attr_reader :name, :theme, :mindset, :active_time
+
+  def initialize
+    @name = "Arian"
+    @theme = "Black / Darkness"
+    @mindset = "Serious • Overthinker • Observer"
+    @active_time = "Night Owl"
+  end
+
+  def boot_sequence
+    puts "Booting system for #{@name}..."
+    sleep 1
+    puts "Loading theme: #{@theme}"
+    sleep 1
+    puts "Mindset detected: #{@mindset}"
+    sleep 1
+    puts "Preferred activity time: #{@active_time}"
+    sleep 1
+    puts "Status: ONLINE\n\n"
+  end
+
+  def self_analysis
+    thoughts = [
+      "Analyzing social perception...",
+      "Protecting honor and prestige...",
+      "Comparing self with others...",
+      "Suppressing unnecessary emotions..."
+    ]
+
+    thoughts.each do |thought|
+      puts "[PROCESS] #{thought}"
+      sleep 0.7
+    end
+  end
+
+  def destiny
+    puts "\nFuture Path:"
+    puts "- Master of Code"
+    puts "- Independent Thinker"
+    puts "- Silent but Powerful Presence"
+  end
+end
+
+system("clear") rescue nil
+
+arian = Arian.new
+arian.boot_sequence
+arian.self_analysis
+arian.destiny
+
+puts "\nSession terminated. Darkness remains. 🖤"
