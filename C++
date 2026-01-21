@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+#include <chrono>
+#include <iomanip>
+
+class UserProfile {
+    std::string name;
+    std::string mindset;
+    std::string theme;
+    std::string activeTime;
+
+public:
+    UserProfile(std::string n, std::string m, std::string t, std::string a)
+        : name(std::move(n)), mindset(std::move(m)), theme(std::move(t)), activeTime(std::move(a)) {}
+
+    void display() const {
+        std::cout << "USER        : " << name << '\n'
+                  << "MINDSET     : " << mindset << '\n'
+                  << "THEME       : " << theme << '\n'
+                  << "ACTIVE TIME : " << activeTime << "\n\n";
+    }
+};
+
+class SystemCore {
+public:
+    static void environment() {
+        const auto now = std::chrono::system_clock::now();
+        const auto time = std::chrono::system_clock::to_time_t(now);
+
+        std::cout << "ENVIRONMENT\n"
+                  << "TIME        : " << std::put_time(std::localtime(&time), "%Y-%m-%d %H:%M:%S") << '\n'
+                  << "LANGUAGE    : C++\n\n";
+    }
+};
+
+int main() {
+    UserProfile user(
+        "Arian",
+        "Serious • Overthinker • Observer",
+        "Dark / Black",
+        "Night"
+    );
+
+    user.display();
+    SystemCore::environment();
+
+    std::cout << "STATUS      : ONLINE\n";
+    std::cout << "MODE        : SILENT\n";
+
+    return 0;
+}
