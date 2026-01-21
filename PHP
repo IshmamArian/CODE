@@ -1,0 +1,42 @@
+<?php
+
+class UserProfile {
+    private string $name;
+    private string $mindset;
+    private string $theme;
+    private string $activeTime;
+
+    public function __construct(string $name, string $mindset, string $theme, string $activeTime) {
+        $this->name = $name;
+        $this->mindset = $mindset;
+        $this->theme = $theme;
+        $this->activeTime = $activeTime;
+    }
+
+    public function display(): void {
+        echo "USER        : {$this->name}\n";
+        echo "MINDSET     : {$this->mindset}\n";
+        echo "THEME       : {$this->theme}\n";
+        echo "ACTIVE TIME : {$this->activeTime}\n\n";
+    }
+}
+
+class SystemCore {
+    public static function environment(): void {
+        echo "ENVIRONMENT\n";
+        echo "TIME        : " . date("Y-m-d H:i:s") . "\n";
+        echo "LANGUAGE    : PHP\n\n";
+    }
+}
+
+$user = new UserProfile(
+    "Arian",
+    "Serious • Overthinker • Observer",
+    "Dark / Black",
+    "Night"
+);
+
+$user->display();
+SystemCore::environment();
+echo "STATUS      : ONLINE\n";
+echo "MODE        : SILENT\n";
